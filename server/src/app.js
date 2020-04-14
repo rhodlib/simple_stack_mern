@@ -1,8 +1,16 @@
 //Imports
 const express = require("express");
-
-//App
+const cors = require("cors");
 const app = express();
+
+//Settings
+app.set("port", process.env.PORT || 4000);
+
+//Middlewares
+app.use(cors());
+app.use(express.json());
+
+//Routes
 
 //Export
 module.exports = app;
