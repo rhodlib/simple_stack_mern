@@ -1,7 +1,7 @@
 //Imports
 import React from 'react';
 import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateNote from './components/CreateNote';
 import CreateUser from './components/CreateUser';
@@ -14,10 +14,12 @@ export const App = () => {
     <Router>
       <Navbar/>
       <div className="container p-4">
-        <Route exact path="/" component={NoteList}/>
-        <Route path="/edit/:id" component={CreateNote}/>
-        <Route path="/create" component={CreateNote}/>
-        <Route path="/user" component={CreateUser}/>
+        <Switch>
+          <Route exact path="/" component={NoteList}/>
+          <Route path="/edit/:id" component={CreateNote}/>
+          <Route path="/create" component={CreateNote}/>
+          <Route path="/user" component={CreateUser}/>
+        </Switch>
       </div>
     </Router>
   );

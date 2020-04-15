@@ -48,7 +48,7 @@ export const CreateUser = () => {
                 value={user}
               />
             </div>
-            <button type="submit" className="btn btn-primary mt-2">
+            <button type="submit" className="btn btn-secondary mt-2">
               Save
             </button>
           </form>
