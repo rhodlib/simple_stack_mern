@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateNote from './components/CreateNote';
 import CreateUser from './components/CreateUser';
 import NoteList from './components/NoteList';
