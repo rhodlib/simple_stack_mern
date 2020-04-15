@@ -2,6 +2,11 @@
 
 ## Technologies
 
+## Frontend
+
+* [React]
+* [react-router-dom]
+
 ### Backend
 
 * [NodeJS]
