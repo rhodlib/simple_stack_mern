@@ -38,9 +38,9 @@ notesController.getNote = async (req, res) => {
 };
 
 notesController.updateNote = async (req, res) => {
-    const { title, content, author } = req.body;
+    const { title, content, author, date } = req.body;
     try {
-        const noteUpdate = await Note.findOneAndUpdate({_id: req.params.id}, { title, content, author });
+        await Note.findOneAndUpdate({_id: req.params.id}, { title, content, author, date });
         res.status(200).send({message: "Note update successfully"});
     } catch (error) {
         res.status(500).send(error);
