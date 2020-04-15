@@ -5,19 +5,33 @@ import axios from "axios";
 //CreateUser component
 export const CreateUser = () => {
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState("");
 
   useEffect(() => {
-    async function getUsers() {
-      const res = await axios.get("http://localhost:4000/api/users");
-      setUsers(res.data);
-    }
-
     getUsers();
   }, []);
 
-  const onChangeUsername = event => {
-      setUser({ username: event.target.value });
+  const getUsers = async () => {
+    const res = await axios.get("http://localhost:4000/api/users");
+    setUsers(res.data);
+  };
+
+  const onChangeUsername = (event) => {
+    setUser(event.target.value);
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    await axios.post("http://localhost:4000/api/users", {
+      username: user,
+    });
+    setUser("");
+    getUsers();
+  };
+
+  const deleteUser = async (id) => {
+    await axios.delete(`http://localhost:4000/api/users/${id}`);
+    getUsers();
   };
 
   return (
@@ -25,14 +39,18 @@ export const CreateUser = () => {
       <div className="col-md-4">
         <div className="card card-body">
           <h3>Create new user</h3>
-          <form>
+          <form onSubmit={onSubmit}>
             <div className="from-group">
               <input
                 type="text"
                 className="form-control"
                 onChange={onChangeUsername}
+                value={user}
               />
             </div>
+            <button type="submit" className="btn btn-primary mt-2">
+              Save
+            </button>
           </form>
         </div>
       </div>
@@ -42,6 +60,7 @@ export const CreateUser = () => {
             <li
               className="list-group-item list-group-item-action"
               key={user._id}
+              onDoubleClick={() => deleteUser(user._id)}
             >
               {user.username}
             </li>
