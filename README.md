@@ -6,6 +6,8 @@
 
 * [React]
 * [react-router-dom]
+* [Bootstrap]
+* [axios]
 
 ### Backend
 
